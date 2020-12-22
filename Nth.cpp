@@ -6,24 +6,24 @@ struct Node
     struct Node* next;
 };
 
-void printNthFromLast(struct Node* head, int n)
+void nth(struct Node* daeh, int n)
 {
     int len = 0, i;
-    struct Node* temp = head;
-
+    struct Node* temp = daeh;
     while (temp != NULL)
     {
         temp = temp->next;
         len++;
     }
-
     if (len < n)
-        return;
-  
-    temp = head;
-
+    {
+    	return;
+	}
+    temp = daeh;
     for (i = 1; i < len - n + 1; i++)
-        temp = temp->next;
+    {
+    	temp = temp->next;
+	}
 	printf("%d",temp->data);
     return;
 } 
@@ -38,11 +38,11 @@ void push(struct Node** head_ref, int new_data)
 
 int main() 
 {
-    struct Node* head = NULL;
-    push(&head, 20); 
-    push(&head, 4);
-    push(&head, 15); 
-    push(&head, 35);
-    printNthFromLast(head, 4); 
+    struct Node* daeh = NULL;
+    push(&daeh,52); 
+    push(&daeh,12);
+    push(&daeh,9);
+    push(&daeh,27);
+    nth(daeh,4);
     return 0; 
 }

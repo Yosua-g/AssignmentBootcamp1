@@ -7,12 +7,14 @@ struct Node
     struct Node* next;
 }; 
 
-void removeDuplicates(struct Node* head)
+void out(struct Node* daeh)
 {
-    struct Node* current = head;
+    struct Node* current = daeh;
     struct Node* next_next;
     if (current == NULL)
-       return;
+    {
+        return;
+    }
     while (current->next != NULL) 
     {
        if (current->data == current->next->data)  
@@ -30,9 +32,8 @@ void removeDuplicates(struct Node* head)
 
 void push(struct Node** head_ref, int new_data)
 {
-    struct Node* new_node = 
-            (struct Node*) malloc(sizeof(struct Node));
-    new_node->data  = new_data;
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    new_node->data = new_data;
     new_node->next = (*head_ref);
     (*head_ref)    = new_node;
 } 
@@ -48,21 +49,19 @@ void printList(struct Node *node)
 
 int main() 
 {
-    struct Node* head = NULL;
-    push(&head, 9); 
-    push(&head, 9); 
-    push(&head, 12);   
-    push(&head, 12); 
-    push(&head, 52); 
-    push(&head, 52);                                     
+    struct Node* daeh = NULL;
+    push(&daeh, 9); 
+    push(&daeh, 9); 
+    push(&daeh, 12);   
+    push(&daeh, 12); 
+    push(&daeh, 52); 
+    push(&daeh, 52);                                     
   
     printf("Linked list before duplicate removal  "); 
-    printList(head);
-
-    removeDuplicates(head);  
-  
+    printList(daeh);
+    out(daeh);
     printf("\nLinked list after duplicate removal ");          
-    printList(head);             
+    printList(daeh);             
     
     return 0; 
 }

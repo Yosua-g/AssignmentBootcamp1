@@ -7,12 +7,11 @@ struct Node
     struct Node* next;  
 }; 
 
-void printMiddle(struct Node *head)  
+void mid(struct Node *daeh)  
 {  
-    struct Node *slow_ptr = head;  
-    struct Node *fast_ptr = head;  
-  
-    if (head!=NULL)  
+    struct Node *slow_ptr = daeh;  
+    struct Node *fast_ptr = daeh;  
+    if (daeh!=NULL)  
     {  
         while (fast_ptr != NULL && fast_ptr->next != NULL)  
         {  
@@ -25,14 +24,13 @@ void printMiddle(struct Node *head)
   
 void push(struct Node** head_ref, int new_data)  
 {
-    struct Node* new_node =  
-        (struct Node*) malloc(sizeof(struct Node));
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
     new_node->data = new_data;
     new_node->next = (*head_ref);
-    (*head_ref) = new_node;  
+    (*head_ref)    = new_node;  
 }
 
-void printList(struct Node *ptr)  
+void list(struct Node *ptr)  
 {  
     while (ptr != NULL)  
     {  
@@ -40,19 +38,16 @@ void printList(struct Node *ptr)
         ptr = ptr->next;  
     }  
     printf("NULL\n");  
-}  
+} 
 
 int main()  
 {
-    struct Node* head = NULL;  
-    int i;  
-  
-    for (i=5; i>0; i--)  
+    struct Node* daeh = NULL;
+    for(int i=5; i>0; i--)  
     {  
-        push(&head, i);  
-        printList(head);  
-        printMiddle(head);  
-    } 
-
-    return 0;  
-} 
+        push(&daeh,i);  
+        list(daeh);  
+        mid(daeh);  
+    }
+    return 0;
+}

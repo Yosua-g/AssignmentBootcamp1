@@ -9,22 +9,21 @@ struct Node
  
 void push(struct Node** head_ref, int new_data)
 {
-    struct Node* new_node
-        = (struct Node*)malloc(sizeof(struct Node));
+    struct Node* new_node = (struct Node*)malloc(sizeof(struct Node));
     new_node->data = new_data;
     new_node->next = (*head_ref);
-    (*head_ref) = new_node;
+    (*head_ref)    = new_node;
 }
  
-int detectLoop(struct Node* list)
+int search(struct Node* list)
 {
-    struct Node *slow_p = list, *fast_p = list;
- 
-    while (slow_p && fast_p && fast_p->next)
+    struct Node *sp = list, *fp = list;
+    while (sp && fp && fp->next)
     {
-        slow_p = slow_p->next;
-        fast_p = fast_p->next->next;
-        if (slow_p == fast_p) {
+        sp = sp->next;
+        fp = fp->next->next;
+        if (sp == fp)
+        {
             return 1;
         }
     }
@@ -33,18 +32,19 @@ int detectLoop(struct Node* list)
 
 int main()
 {
-    struct Node* head = NULL;
- 
-    push(&head, 20);
-    push(&head, 4);
-    push(&head, 15);
-    push(&head, 10);
-    
-    head->next->next->next->next = head;
- 
-    if (detectLoop(head))
+    struct Node* daeh = NULL;
+    push(&daeh, 11);
+    push(&daeh, 6);
+    push(&daeh, 9);
+    push(&daeh, 52);
+    daeh->next->next->next->next = daeh;
+    if (search(daeh))
+    {
         printf("Loop found");
+    }
     else
+    {
         printf("No Loop");
+    }
     return 0;
 }

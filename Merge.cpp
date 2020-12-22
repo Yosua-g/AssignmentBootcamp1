@@ -8,8 +8,8 @@ struct Node
     struct Node* next;
 };
 
-void MoveNode(struct Node** destRef, struct Node** sourceRef);
-struct Node* SortedMerge(struct Node* a, struct Node* b)
+void merge(struct Node** destRef, struct Node** sourceRef);
+struct Node* sort(struct Node* a, struct Node* b)
 {
     struct Node dummy;
     struct Node* tail = &dummy;
@@ -27,16 +27,19 @@ struct Node* SortedMerge(struct Node* a, struct Node* b)
             break;
         }
         if (a->data <= b->data)
-            MoveNode(&(tail->next), &a);
+        {
+        	merge(&(tail->next), &a);
+		}
         else
-            MoveNode(&(tail->next), &b);
-
+        {
+        	merge(&(tail->next), &b);
+		}
         tail = tail->next; 
     }
     return(dummy.next); 
 }
 
-void MoveNode(struct Node** destRef, struct Node** sourceRef) 
+void merge(struct Node** destRef, struct Node** sourceRef) 
 {
     struct Node* newNode = *sourceRef; 
     assert(newNode != NULL);
@@ -47,9 +50,8 @@ void MoveNode(struct Node** destRef, struct Node** sourceRef)
 
 void push(struct Node** head_ref, int new_data) 
 {
-    struct Node* new_node = 
-        (struct Node*) malloc(sizeof(struct Node));
-    new_node->data  = new_data;
+    struct Node* new_node = (struct Node*) malloc(sizeof(struct Node));
+    new_node->data = new_data;
     new_node->next = (*head_ref);
     (*head_ref)    = new_node; 
 }
@@ -68,19 +70,14 @@ int main()
     struct Node* res = NULL; 
     struct Node* a = NULL; 
     struct Node* b = NULL;
-
-    push(&a, 15); 
-    push(&a, 10);
-    push(&a, 5); 
-  
-    push(&b, 20); 
-    push(&b, 3); 
-    push(&b, 2);
-
-    res = SortedMerge(a, b); 
-  
+    push(&a,15); 
+    push(&a,10);
+    push(&a,5); 
+    push(&b,20);
+    push(&b,3);
+    push(&b,2);
+    res = sort(a,b);
     printf("Merged Linked List is: \n"); 
     printList(res); 
-  
     return 0; 
 } 
